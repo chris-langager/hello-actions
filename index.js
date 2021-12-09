@@ -1,10 +1,13 @@
 
 const { promises: fs } = require('fs')
 const path = require('path')
+const simpleGit = require('simple-git')
 const core = require('@actions/core');
 const github = require('@actions/github');
 
 
+const baseDir = process.cwd()
+const git = simpleGit({ baseDir })
 
 const directory = 'text_files'
 const outputFile = 'together.txt'
@@ -22,7 +25,12 @@ async function run(){
 
         console.log(acc);
 
-        await fs.writeFile(path.join(directory, outputFile), acc)
+        const outputFilePath = path.join(directory, outputFile);
+        await fs.writeFile(outputFilePath, acc)
+        await git.add(outputFilePath)
+        await git.commit(`updated ${outputFilePath}`)
+        await git.push('origin', 'main');
+
 
         // `who-to-greet` input defined in action metadata file
         const nameToGreet = core.getInput('who-to-greet');
