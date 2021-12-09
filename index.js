@@ -27,9 +27,13 @@ async function run(){
 
         const outputFilePath = path.join(directory, outputFile);
         await fs.writeFile(outputFilePath, acc)
-        await git.add(outputFilePath)
-        await git.commit(`updated ${outputFilePath}`)
-        await git.push('origin', 'main');
+
+        await git
+            .addConfig('user.email', 'christopher.langager@gmail.com')
+            .addConfig('user.name', 'Chris Langager')
+            .add(outputFilePath)
+            .commit(`updated ${outputFilePath}`)
+            .push('origin', 'main');
 
 
         // `who-to-greet` input defined in action metadata file
