@@ -1,15 +1,28 @@
 
 const { promises: fs } = require('fs')
+const path = require('path')
 const core = require('@actions/core');
 const github = require('@actions/github');
 
+
+
+const directory = 'text_files'
+const outputFile = 'together.txt'
+
 async function run(){
     try {
+       
+        const files = await fs.readdir(directory);
 
-        const fileNames = await fs.readdir('text_files');
-        for (let fileName of fileNames) {
-            console.log(fileName)
+        let acc = '';
+        for (let file of files) {
+            const data = await fs.readFile(path.join(directory, file), 'utf8');
+            acc += data.endsWith('\n') ? data : data + '\n';
         }
+
+        console.log(acc);
+
+        await fs.writeFile(path.join(directory, outputFile), acc)
 
         // `who-to-greet` input defined in action metadata file
         const nameToGreet = core.getInput('who-to-greet');
