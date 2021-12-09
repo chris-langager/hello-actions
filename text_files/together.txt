@@ -1,5 +1,8 @@
 This is from the file one.
 This is from the file one.
+This is from the file one.
 This is from the file two.
+This is from the file two.
+And another!
 This is from the file two.
 And another!
