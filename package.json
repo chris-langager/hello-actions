@@ -20,5 +20,16 @@
     "@actions/core": "^1.6.0",
     "@actions/github": "^5.0.0",
     "simple-git": "^2.48.0"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.12",
+    "prettier": "^2.5.1",
+    "typescript": "^4.5.2"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "es5",
+    "printWidth": 90
   }
 }
