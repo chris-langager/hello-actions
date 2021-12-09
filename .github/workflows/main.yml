@@ -12,6 +12,6 @@ jobs:
       - name: Install dependencies
         uses: actions/setup-node@v2
       - name: Build
-        run: npm build
+        run: npm run build
       - name: Stitch files together
         uses: ./ # Uses an action in the root directory
